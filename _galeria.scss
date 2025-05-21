@@ -1,0 +1,88 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.galeria {
+    @include m.contenedor;
+    padding: 3rem 0;
+
+    h3 {
+        color: v.$color_primario;
+    }
+    
+    &-imagenes {
+        @include m.grid(1, 2rem);
+
+        @include m.telefono {
+            @include m.grid(2, 2rem);
+        }
+
+        @include m.tablet {
+            @include m.grid(3, 2rem);
+        }
+
+        img {
+            height: 20rem;
+            object-fit: cover;
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color:rgba(v.$texto_base , 0.5);
+    display: grid;
+    place-items: center;
+    z-index: 11;
+
+    animation:fadeIn ease-in 0.5s;
+
+    &.fadeOut {
+        animation:fadeOut ease-in 0.5s;
+    }
+
+    img {
+        max-width: 100rem;
+        max-height: 60rem;
+    }
+
+    .btn-cerrar {
+        width: 4.5rem;
+        height: auto;
+        border-radius: 50%;
+        background-color: v.$fondo_general;
+        color: v.$texto_base;
+        font-size: 3rem;
+        border-style: none;
+        transition: ease-in-out .5s;
+
+        &:hover {
+            background-color: v.$color_primario;
+            color: v.$color_de_apoyo;
+            transition: ease-in-out .5s;
+            transform: scale(1.2);
+        }
+    }
+
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
